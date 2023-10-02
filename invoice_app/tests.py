@@ -23,7 +23,7 @@ class InvoicesAPITestCase(TestCase):
                 "customer_name": "shafi",
             },
             "invoice_detail": {
-                "description": "Sample description",
+                "description": "phones",
                 "quantity": 2,
                 "unit_price": 50,
                 "price": 100,
@@ -40,7 +40,7 @@ class InvoicesAPITestCase(TestCase):
         data = {
             "invoice": self.invoice.pk,
             "invoice_detail": {
-                "description": "Updated Description",
+                "description": "mobile phones",
             }
         }
         response = self.client.patch(f'/invoices/{self.invoice.pk}/', data, format='json')
@@ -49,4 +49,4 @@ class InvoicesAPITestCase(TestCase):
 
         self.invoice_detail.refresh_from_db()
 
-        self.assertEqual(self.invoice_detail.description, "Updated Description")
+        self.assertEqual(self.invoice_detail.description, "mobile phones")
