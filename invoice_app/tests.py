@@ -7,9 +7,9 @@ class InvoicesAPITestCase(TestCase):
 
     def setUp(self):
         self.client = APIClient()
-        self.invoice = Invoice.objects.create(customer_name="Initial Name")
+        self.invoice = Invoice.objects.create(customer_name="shafi")
         self.invoice_detail = InvoiceDetail.objects.create(
-            invoice=self.invoice, description="Initial Description", quantity=1, unit_price=100, price=100
+            invoice=self.invoice, description="mobile phones", quantity=1, unit_price=100, price=100
         )
 
     def tearDown(self):

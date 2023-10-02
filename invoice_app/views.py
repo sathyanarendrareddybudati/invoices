@@ -32,6 +32,7 @@ class InvoicesAPI(APIView):
 
     
     def patch(self, request, pk, format=None):
+        
         try:
             invoice = Invoice.objects.get(pk=pk)
             invoice_detail = InvoiceDetail.objects.get(invoice=invoice)
@@ -39,10 +40,10 @@ class InvoicesAPI(APIView):
             return Response({"message": "Invoice not found"}, status=status.HTTP_404_NOT_FOUND)
         except InvoiceDetail.DoesNotExist:
             return Response({"message": "Invoice detail not found"}, status=status.HTTP_404_NOT_FOUND)
-    
+
         invoice_serializer = InvoiceSerializer(invoice, data=request.data, partial=True)
         invoice_detail_serializer = InvoiceDetailSerializer(invoice_detail, data=request.data, partial=True)
-    
+
         if invoice_serializer.is_valid() and invoice_detail_serializer.is_valid():
             invoice_serializer.save()
             invoice_detail_serializer.save()
